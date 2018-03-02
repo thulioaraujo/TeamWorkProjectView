@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.teamwork.projectview"
+        minSdkVersion 25
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+ext {
+    supportLibVersion = '27.1.0'
+    constraintlayoutVersion = '1.0.2'
+    retrofitVersion = '2.3.0'
+    rxAndroidVersion = '2.0.2'
+    rxJavaVersion = '2.1.10'
+    espressoVersion = '3.0.1'
+    junitVersion = '4.12'
+    glideVersion = '4.6.1'
+    gsonVersion = '2.8.2'
+    daggerVersion = '2.14.1'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Support Libs
+    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
+    implementation "com.android.support.constraint:constraint-layout:${constraintlayoutVersion}"
+    implementation "com.android.support:design:${supportLibVersion}"
+
+    // Network Connection
+    compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    compile "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+    compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+
+    // Dagger
+    compile "com.google.dagger:dagger:${daggerVersion}"
+    compile "com.google.dagger:dagger-android:${daggerVersion}"
+    compile "com.google.dagger:dagger-android-support:${daggerVersion}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+    annotationProcessor "com.google.dagger:dagger-android-processor:${daggerVersion}"
+
+    // RxAndroid RxJava
+    implementation "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
+    implementation "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+
+    // Json
+    compile "com.google.code.gson:gson:${gsonVersion}"
+
+    // Image
+    implementation "com.github.bumptech.glide:glide:${glideVersion}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${glideVersion}"
+
+    // Unit test and it's dependencies
+    testImplementation "junit:junit:${junitVersion}"
+
+    androidTestImplementation "com.android.support.test:runner:1.0.1"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+}
