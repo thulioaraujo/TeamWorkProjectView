@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.teamwork.projectview"
         minSdkVersion 25
@@ -9,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -46,10 +48,7 @@ dependencies {
 
     // Dagger
     compile "com.google.dagger:dagger:${daggerVersion}"
-    compile "com.google.dagger:dagger-android:${daggerVersion}"
-    compile "com.google.dagger:dagger-android-support:${daggerVersion}"
     annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
-    annotationProcessor "com.google.dagger:dagger-android-processor:${daggerVersion}"
 
     // RxAndroid RxJava
     implementation "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"

@@ -1,4 +1,4 @@
-package com.teamwork.projectview.model.entities;
+package com.teamwork.projectview.data.entities;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

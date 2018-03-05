@@ -1,4 +1,4 @@
-package com.teamwork.projectview.model.entities;
+package com.teamwork.projectview.data.entities;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -6,42 +6,42 @@ import com.google.gson.annotations.SerializedName;
 /**
  * TeamWorkProjectView - Technical Test
  *
- * This class represents the Category of a Project object of the
+ * This class represents the Company object of the
  * TeamWork API.
  *
  * Created by Thulio Araujo on 3/1/2018.
  */
 
-public class Category {
+public class Company {
 
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("is-owner")
+    @Expose
+    private String isOwner;
     @SerializedName("id")
     @Expose
     private String id;
-    @SerializedName("color")
-    @Expose
-    private String color;
 
     /**
      * No args constructor for use in serialization
      * 
      */
-    public Category() {
+    public Company() {
     }
 
     /**
      * 
      * @param id
-     * @param color
      * @param name
+     * @param isOwner
      */
-    public Category(String name, String id, String color) {
+    public Company(String name, String isOwner, String id) {
         super();
         this.name = name;
+        this.isOwner = isOwner;
         this.id = id;
-        this.color = color;
     }
 
     public String getName() {
@@ -52,20 +52,20 @@ public class Category {
         this.name = name;
     }
 
+    public String getIsOwner() {
+        return isOwner;
+    }
+
+    public void setIsOwner(String isOwner) {
+        this.isOwner = isOwner;
+    }
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
 }

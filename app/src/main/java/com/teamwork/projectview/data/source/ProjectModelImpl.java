@@ -1,9 +1,9 @@
-package com.teamwork.projectview.model.business;
+package com.teamwork.projectview.data.source;
 
 import android.app.Application;
 
-import com.teamwork.projectview.model.dao.ProjectDAO;
-import com.teamwork.projectview.model.entities.Projects;
+import com.teamwork.projectview.data.dao.ProjectDAO;
+import com.teamwork.projectview.data.entities.Projects;
 import com.teamwork.projectview.util.Logger;
 
 import io.reactivex.Observable;
@@ -14,7 +14,7 @@ import io.reactivex.functions.Function;
  * TeamWorkProjectView - Technical Test
  *
  * This class implements methods which retrieves data related to the
- * {@link com.teamwork.projectview.model.entities.Project }
+ * {@link com.teamwork.projectview.data.entities.Project }
  *
  * Created by Thulio Araujo on 3/1/2018.
  */

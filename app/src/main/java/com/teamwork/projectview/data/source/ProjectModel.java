@@ -1,7 +1,7 @@
-package com.teamwork.projectview.model.business;
+package com.teamwork.projectview.data.source;
 
-import com.teamwork.projectview.model.dao.ProjectDAO;
-import com.teamwork.projectview.model.entities.Projects;
+import com.teamwork.projectview.data.dao.ProjectDAO;
+import com.teamwork.projectview.data.entities.Projects;
 
 import io.reactivex.Observable;
 

@@ -1,6 +1,6 @@
-package com.teamwork.projectview.datasource.builder;
+package com.teamwork.projectview.di.module;
 
-import com.teamwork.projectview.model.dao.ProjectDAO;
+import com.teamwork.projectview.data.dao.ProjectDAO;
 
 import dagger.Module;
 import dagger.Provides;
@@ -15,7 +15,7 @@ import retrofit2.Retrofit;
  */
 
 @Module
-public class RetrofitBuilder {
+public class RetrofitModule {
 
     @Provides
     public ProjectDAO providesTaskInterface(Retrofit retrofit) {

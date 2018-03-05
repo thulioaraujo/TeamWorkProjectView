@@ -1,4 +1,4 @@
-package com.teamwork.projectview.datasource.builder;
+package com.teamwork.projectview.di.module;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,10 +26,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 @Module
-public class NetworkServiceBuilder {
+public class NetworkServiceModule {
 
-    final String authKey = "twp_TEbBXGCnvl2HfvXWfkLUlzx92e3T";
-    public static final String BASE_URL = "https://yat.teamwork.com/";
+    private final String authKey = "dHdwX1RFYkJYR0NudmwySGZ2WFdma0xVbHp4OTJlM1Q6eWF0eWF0eWF0Mjc=";
+    private static final String BASE_URL = "https://yat.teamwork.com/";
 
     @Provides
     @Singleton

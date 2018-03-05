@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.teamwork.projectview.view.ProjectViewActivity"
+    tools:context="com.teamwork.projectview.ui.project.ProjectActivity"
     tools:showIn="@layout/activity_project_view">
 
     <TextView
