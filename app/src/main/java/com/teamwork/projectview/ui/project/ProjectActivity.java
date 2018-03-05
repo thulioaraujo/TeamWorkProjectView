@@ -9,8 +9,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -20,6 +18,7 @@ import com.teamwork.projectview.data.dao.ProjectDAO;
 import com.teamwork.projectview.data.entities.Project;
 import com.teamwork.projectview.di.components.ProjectComponent;
 import com.teamwork.projectview.ui.base.BaseActivity;
+import com.teamwork.projectview.util.component.FullScreenDialogFragment;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public class ProjectActivity extends BaseActivity implements ProjectContract.View {
+public class ProjectActivity extends BaseActivity implements ProjectContract.View, ProjectListAdapterListener {
 
     @Inject
     ProjectPresenter mProjectPresenter;
@@ -62,28 +61,6 @@ public class ProjectActivity extends BaseActivity implements ProjectContract.Vie
 
         mCompositeDisposable = new CompositeDisposable();
         init();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_project_view, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -124,7 +101,7 @@ public class ProjectActivity extends BaseActivity implements ProjectContract.Vie
     public void setAdapter(ArrayList<Project> projectList) {
         if (projectList != null && projectList.size() > 0) {
             // Creates the adapter and set it to the Recycler View
-            this.projectListAdapter = new ProjectListAdapter(projectList, this);
+            this.projectListAdapter = new ProjectListAdapter(projectList, this, this);
             this.projectListRecyclerView.setAdapter(this.projectListAdapter);
         }
     }
@@ -148,5 +125,19 @@ public class ProjectActivity extends BaseActivity implements ProjectContract.Vie
     @Override
     public void openListActivity() {
 
+    }
+
+    @Override
+    public void onHandleSelection(int position, Project project) {
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("", 0);
+
+        FullScreenDialogFragment projectDetailDialog = new FullScreenDialogFragment.Builder(this)
+                .setTitle("Project Detail")
+                .setContent(OrdemServicoEncerrarViewDialogFragment.class, bundle)
+                .build();
+
+        projectDetailDialog.show(getSupportFragmentManager(), "dialog");;
     }
 }

@@ -56,6 +56,7 @@ public final class ProjectPresenter implements ProjectContract.Presenter {
                     @Override
                     public void onError(Throwable e) {
                         mProjectView.showDialogErrorMessage(mApplication.getString(R.string.error_fetch_all_projects));
+                        mProjectView.showHideProgress(false);
                     }
 
                     @Override

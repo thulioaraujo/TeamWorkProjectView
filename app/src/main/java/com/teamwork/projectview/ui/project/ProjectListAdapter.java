@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.teamwork.projectview.R;
@@ -26,12 +25,16 @@ import java.util.ArrayList;
 
 public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.ViewHolder> {
 
-    private ArrayList<Project> projects;
-    private Context context;
+    private ArrayList<Project> mProjects;
+    private Context mContext;
+    private ProjectListAdapterListener mProjectListAdapterListener;
 
-    public ProjectListAdapter(ArrayList<Project> projects, Context context) {
-        this.projects = projects;
-        this.context = context;
+    public ProjectListAdapter(ArrayList<Project> projects, Context context, ProjectListAdapterListener projectListAdapterListener) {
+        this.mProjects = projects;
+        this.mContext = context;
+
+        // Coupling the lister to the context
+        this.mProjectListAdapterListener = projectListAdapterListener;
     }
 
     @NonNull
@@ -42,12 +45,12 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Project project = projects.get(position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        final Project project = mProjects.get(position);
 
         if (project != null) {
             if (project.getLogo() != null && !"".equals(project.getLogo())) {
-                Picasso.with(context)
+                Picasso.with(mContext)
                         .load(project.getLogo())
                         .placeholder(R.drawable.progress_animation)
                         .error(R.mipmap.logo_error)
@@ -68,16 +71,16 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 
             if (project.getStatus().equals(Project.ProjectStatus.ACTIVE.getValue())) {
                 holder.projectStatus.setText(project.getStatus());
-                holder.projectStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.activeProjectColor));
+                holder.projectStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.activeProjectColor));
             } else if (project.getStatus().equals(Project.ProjectStatus.ARCHIVED.getValue())) {
                 holder.projectStatus.setText(project.getStatus());
-                holder.projectStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.archivedProjectColor));
+                holder.projectStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.archivedProjectColor));
             }
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "Open projects here", Toast.LENGTH_SHORT).show();
+                    mProjectListAdapterListener.onHandleSelection(position, project);
                 }
             });
         }
@@ -85,7 +88,7 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 
     @Override
     public int getItemCount() {
-        return projects.size();
+        return mProjects.size();
     }
 
     /**
