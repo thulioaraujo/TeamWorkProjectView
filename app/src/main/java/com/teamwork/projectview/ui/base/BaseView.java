@@ -10,8 +10,8 @@ package com.teamwork.projectview.ui.base;
 
 public interface BaseView<T> {
 
-    void showProgress();
+    void showHideProgress(final boolean visibility);
 
-    void hideProgress();
+    void showDialogErrorMessage(final String message);
 
 }

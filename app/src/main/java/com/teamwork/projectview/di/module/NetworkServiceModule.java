@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkServiceModule {
 
-    private final String authKey = "dHdwX1RFYkJYR0NudmwySGZ2WFdma0xVbHp4OTJlM1Q6eWF0eWF0eWF0Mjc=";
+    private final String authKey = "dHdwXzB3UDd3N3U4aG9nNWxaTWczTDh3QkRNVkN1eG8=";
     private static final String BASE_URL = "https://yat.teamwork.com/";
 
     @Provides

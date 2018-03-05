@@ -432,4 +432,20 @@ public class Project implements java.io.Serializable {
     public void setArchivedByUserId(String archivedByUserId) {
         this.archivedByUserId = archivedByUserId;
     }
+
+    public enum ProjectStatus {
+
+        ACTIVE("active"),
+        ARCHIVED("archived");
+
+        private final String value;
+
+        ProjectStatus(String option){
+            value = option;
+        }
+
+        public String getValue(){
+            return value;
+        }
+    }
 }

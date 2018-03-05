@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">ProjectView</string>
+    <string name="app_name">TeamWork - Project View</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Project Activity -->
+    <string name="error_fetch_all_projects">Error to request all projects from TeamWork API.</string>
 </resources>

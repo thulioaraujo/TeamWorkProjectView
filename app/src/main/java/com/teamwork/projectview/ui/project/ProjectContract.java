@@ -1,7 +1,10 @@
 package com.teamwork.projectview.ui.project;
 
+import com.teamwork.projectview.data.entities.Project;
 import com.teamwork.projectview.ui.base.BasePresenter;
 import com.teamwork.projectview.ui.base.BaseView;
+
+import java.util.ArrayList;
 
 /**
  * TeamWorkProjectView - Technical Test
@@ -17,9 +20,11 @@ public interface ProjectContract {
 
         void loadView();
 
-        void showProgress();
+        void showHideProgress(final boolean visibility);
 
-        void hideProgress();
+        void setAdapter(ArrayList<Project> projectList);
+
+        void showDialogErrorMessage(final String message);
 
         void openListActivity();
     }

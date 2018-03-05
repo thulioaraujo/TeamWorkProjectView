@@ -2,6 +2,7 @@ package com.teamwork.projectview.ui.project;
 
 import android.app.Application;
 
+import com.teamwork.projectview.R;
 import com.teamwork.projectview.data.dao.ProjectDAO;
 import com.teamwork.projectview.data.entities.Project;
 import com.teamwork.projectview.data.entities.Projects;
@@ -38,7 +39,7 @@ public final class ProjectPresenter implements ProjectContract.Presenter {
         this.mProjectModel = projectModel;
     }
 
-    public void getProjectList(ProjectDAO projectDAO, CompositeDisposable mCompositeDisposable){
+    public void setProjectList(ProjectDAO projectDAO, CompositeDisposable mCompositeDisposable){
 
         mCompositeDisposable.add(mProjectModel.fetchAllProject(projectDAO)
                 .subscribeOn(Schedulers.io())
@@ -49,20 +50,19 @@ public final class ProjectPresenter implements ProjectContract.Presenter {
                         List<Project> arr = projects.getProjects();
 
                         ArrayList<Project> projectItemList = new ArrayList<>(arr);
-                        System.out.println(projectItemList.get(0).getName());
+                        mProjectView.setAdapter(projectItemList);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        mProjectView.showDialogErrorMessage(mApplication.getString(R.string.error_fetch_all_projects));
                     }
 
                     @Override
                     public void onComplete() {
-
+                        mProjectView.showHideProgress(false);
                     }
                 }));
-
     }
 
     @Override
