@@ -18,6 +18,8 @@ import com.teamwork.projectview.data.dao.ProjectDAO;
 import com.teamwork.projectview.data.entities.Project;
 import com.teamwork.projectview.di.components.ProjectComponent;
 import com.teamwork.projectview.ui.base.BaseActivity;
+import com.teamwork.projectview.ui.projectdetail.ProjectDetailFragment;
+import com.teamwork.projectview.util.SystemConstants;
 import com.teamwork.projectview.util.component.FullScreenDialogFragment;
 
 import java.util.ArrayList;
@@ -25,6 +27,12 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
+
+/**
+ * TeamWorkProjectView - Technical Test
+ *
+ * Created by Thulio Araujo on 3/1/2018.
+ */
 
 public class ProjectActivity extends BaseActivity implements ProjectContract.View, ProjectListAdapterListener {
 
@@ -131,11 +139,11 @@ public class ProjectActivity extends BaseActivity implements ProjectContract.Vie
     public void onHandleSelection(int position, Project project) {
 
         Bundle bundle = new Bundle();
-        bundle.putInt("", 0);
+        bundle.putSerializable(SystemConstants.PROJECT_DETAIL, project);
 
         FullScreenDialogFragment projectDetailDialog = new FullScreenDialogFragment.Builder(this)
                 .setTitle("Project Detail")
-                .setContent(OrdemServicoEncerrarViewDialogFragment.class, bundle)
+                .setContent(ProjectDetailFragment.class, bundle)
                 .build();
 
         projectDetailDialog.show(getSupportFragmentManager(), "dialog");;
